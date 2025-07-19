@@ -1,0 +1,41 @@
+.register-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e293b;
+  padding: 20px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.register-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.register-button {
+  width: 100%;
+  background-color: #c28812;
+}
+
+.register-button:hover {
+  background-color: #c28812 !important;
+}
+.custom-yellow-input input {
+  border: 1px solid #c28812 !important;
+  box-shadow: none !important;
+}
+
+.custom-yellow-input input:focus {
+  border-color: #c28812 !important;
+  box-shadow: 0 0 0 2px rgba(194, 136, 18, 0.2) !important;
+}
+.ant-input-affix-wrapper {
+  border: 1px solid #c28812 !important;
+}

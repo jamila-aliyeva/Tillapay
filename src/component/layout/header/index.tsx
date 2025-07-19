@@ -40,16 +40,16 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
               <li className="nav__item mobile-login">
-                <Link to="/" className="header-login">
-                  LOG IN
+                <Link to="register" className="header-login">
+                  Register
                 </Link>
               </li>
             </ul>
           </nav>
 
           {/* Desktop Login Button */}
-          <Link to="register-beta" className="header-login desktop-login">
-            LOG IN
+          <Link to="register" className="header-login desktop-login">
+            Register
           </Link>
 
           {/* Burger Menu */}
