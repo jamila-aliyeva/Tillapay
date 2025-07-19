@@ -1,0 +1,141 @@
+:root {
+  --nav-link: #ffffff;
+  --header-logo: #0f172a;
+}
+
+.footer {
+  padding: 60px 0px;
+  text-align: center;
+  background-color: var(--header-logo);
+}
+
+.footer__container {
+  margin-bottom: 50px;
+}
+
+.footer__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-flow: row nowrap;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer__item-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--nav-link);
+  line-height: 100%;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.footer__navigations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.footer__navigation-link {
+  font-size: 16px;
+  color: var(--nav-link);
+  font-weight: 400;
+  line-height: 100%;
+  transition: opacity 150ms linear;
+  text-decoration: none;
+}
+
+.footer__navigation-link:hover {
+  opacity: 0.8;
+}
+
+.footer-horizontal-rule {
+  height: 2px;
+  margin-bottom: 30px;
+  background-color: var(--nav-link);
+  border: none;
+}
+
+.footer__medias {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+}
+
+.footer__media-image {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 150ms linear;
+}
+
+.footer__media-image:hover {
+  transform: scale(1.2);
+}
+
+/* Tablet - max-width 991px */
+@media (max-width: 991px) {
+  .footer__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer__navigations {
+    align-items: center;
+  }
+
+  .footer__item {
+    width: 45%;
+    margin-bottom: 40px;
+  }
+}
+
+/* Mobile - max-width 576px */
+@media (max-width: 576px) {
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footer__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .footer__item {
+    width: 100%;
+  }
+
+  .footer__item-title {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .footer__navigation-link {
+    font-size: 14px;
+  }
+
+  .footer__navigations {
+    gap: 24px;
+  }
+
+  .footer-horizontal-rule {
+    margin-bottom: 30px;
+  }
+
+  .footer__medias {
+    gap: 30px;
+  }
+
+  .footer__media-image {
+    width: 28px;
+    height: 28px;
+  }
+}
