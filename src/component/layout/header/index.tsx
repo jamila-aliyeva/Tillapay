@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./index.css";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
 
   return (
     <header className="header">
@@ -25,13 +31,13 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/" className="nav__item-link">
-                  Solutions
+                <NavLink to="/payment" className="nav__item-link">
+                  Payment
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/" className="nav__item-link">
-                  Resources
+                <NavLink to="/transactions" className="nav__item-link">
+                  Transactions
                 </NavLink>
               </li>
               <li className="nav__item">
@@ -40,17 +46,29 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
               <li className="nav__item mobile-login">
-                <Link to="register" className="header-login">
-                  Register
-                </Link>
+                {isAuthenticated ? (
+                  <Link to="profile" className="header-login">
+                    Profile
+                  </Link>
+                ) : (
+                  <Link to="register" className="header-login">
+                    Register
+                  </Link>
+                )}
               </li>
             </ul>
           </nav>
 
           {/* Desktop Login Button */}
-          <Link to="register" className="header-login desktop-login">
-            Register
-          </Link>
+          {isAuthenticated ? (
+            <Link to="profile" className="header-login">
+              Profile
+            </Link>
+          ) : (
+            <Link to="register" className="header-login">
+              Register
+            </Link>
+          )}
 
           {/* Burger Menu */}
           <button

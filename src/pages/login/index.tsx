@@ -1,14 +1,30 @@
-import { Form, Input, Button, Typography, Card } from "antd";
-import "./index.css"; // CSS fayl nomi
+import { Form, Input, Button, Typography, Card, message } from "antd";
+import "./index.css";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../store/store";
+import { loginUser } from "../../store/authSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading } = useSelector((state: RootState) => state.auth);
 
-  const onFinish = (values) => {
-    console.log("Login qiymatlari:", values);
-    // Bu yerda login API chaqiriladi
+  const onFinish = async (values: any) => {
+    console.log("yuborilayotgan values:", values);
+
+    const result = await dispatch(loginUser(values));
+    if (loginUser.fulfilled.match(result)) {
+      message.success("Muvaffaqiyatli tizimga kirildi!");
+      const token = result.payload.token;
+      localStorage.setItem("token", token);
+      navigate("/profile");
+    } else {
+      message.error(result.payload || "Xatolik yuz berdi");
+    }
   };
 
   return (
@@ -44,9 +60,25 @@ const LoginPage = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-button">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-button"
+              loading={loading}
+            >
               Login
             </Button>
+            <p style={{ marginTop: "20px" }}>
+              If you don't registered,
+              <span>
+                <Link
+                  to="/register"
+                  style={{ color: "#c28812", fontWeight: "600" }}
+                >
+                  Register
+                </Link>
+              </span>
+            </p>
           </Form.Item>
         </Form>
       </Card>

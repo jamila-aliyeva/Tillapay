@@ -1,13 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./index.css";
-// import {
-//   Facebook,
-//   Instagram,
-//   LinkedIn,
-//   Telegram,
-//   Twitter,
-// } from "../../../Assets/Images/Png";
+import { FaInstagram } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
 const footerLinks = [
   {
     title: "компания",
@@ -27,14 +23,6 @@ const footerLinks = [
   },
 ];
 
-// const socialIcons = [
-//   { src: Facebook, alt: "Facebook" },
-//   { src: Twitter, alt: "Twitter" },
-//   { src: Instagram, alt: "Instagram" },
-//   { src: LinkedIn, alt: "LinkedIn" },
-//   { src: Telegram, alt: "Telegram" },
-// ];
-
 const Footer: React.FC = () => {
   return (
     <footer className="footer">
@@ -44,7 +32,6 @@ const Footer: React.FC = () => {
             {footerLinks.map((section, index) => (
               <li className="footer__item" key={index}>
                 <h2 className="footer__item-title">{section.title}</h2>
-                <hr className="footer-horizontal-rule" />
 
                 <ul className="footer__navigations">
                   {section.links.map((link, idx) => (
@@ -60,22 +47,23 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        <hr className="footer-horizontal-rule" />
-
         <ul className="footer__medias">
-          {/* {socialIcons.map((icon, index) => (
-            <li key={index}>
-              <a href="#" target="_blank" rel="noreferrer">
-                <img
-                  src={icon.src}
-                  alt={icon.alt}
-                  className="footer__media-image"
-                />
-              </a>
-            </li>
-          ))} */}
+          <li className="footer__media-image">
+            <a href="insagram.com">
+              <FaInstagram />
+            </a>
+          </li>
+          <li className="footer__media-image">
+            <a href="insagram.com">
+              <FaLinkedin />
+            </a>
+          </li>
+          <li className="footer__media-image">
+            <a href="insagram.com">
+              <FaTelegram />
+            </a>
+          </li>
         </ul>
-        <hr className="footer-horizontal-rule " />
       </div>
     </footer>
   );

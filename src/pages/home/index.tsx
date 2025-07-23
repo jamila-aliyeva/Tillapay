@@ -16,17 +16,16 @@ const Homepage: React.FC = () => {
     <section className="hero" style={backgroundStyle}>
       <div className="container">
         <div className="hero__content">
-          <h3 className="hero__content-welcome">Welcome to KIRA</h3>
           <h2 className="hero__content-title">
-            One Journey Every Voice Every Destination
+            WELCOME TO TILLAPAY MANAGE YOUR MONEY SMARTLY PAYMENTS. BALANCE.
+            SECURITY.
           </h2>
           <p className="hero__content-description">
-            We are an online plant shop offering a wide range of cheap and
-            trendy plants. Use our plants to create a unique Urban Jungle. Order
-            your favorite plants!
+            Easily top up your balance, manage your payments, and simplify your
+            financial life with TillaPay.
           </p>
-          <Link className="hero-shop-now" to="/">
-            show now
+          <Link className="hero-shop-now" to="/payment">
+            payment
           </Link>
         </div>
       </div>

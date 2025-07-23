@@ -1,0 +1,28 @@
+.payment-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+.payment-content h1 {
+  font-size: 55px;
+}
+.payment-pr {
+  font-size: 25px;
+  padding-bottom: 40px;
+}
+.payment-input {
+  padding: 5px 15px;
+  width: 300px;
+  margin-bottom: 40px;
+}
+.payment-btn {
+  background-color: #c28812;
+  color: #fff;
+}
+.payment-btn:hover {
+  color: #c28812 !important;
+  border: 1px solid #c28812 !important;
+}
