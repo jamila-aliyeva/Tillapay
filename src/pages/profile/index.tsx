@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu, Typography, Descriptions, Spin, message } from "antd";
-import {
-  UserOutlined,
-  BellOutlined,
-  LogoutOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined, EditOutlined } from "@ant-design/icons";
 import ProfileEditModal from "../../component/ProfileEditModal";
 import axios from "axios";
 import "./index.css";
@@ -31,7 +26,7 @@ const ProfilePage: React.FC = () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        message.error("Avval tizimga kiring.");
+        message.error("Please log in first.");
         setLoading(false);
         return;
       }
@@ -53,18 +48,18 @@ const ProfilePage: React.FC = () => {
           const localUser = localStorage.getItem("user");
           if (localUser) {
             setProfile(JSON.parse(localUser));
-            message.info("Offline ma'lumotlar yuklandi.");
+            message.info("Loaded offline data.");
           } else {
-            message.error("Foydalanuvchi ma'lumotlarini olishda xatolik");
+            message.error("Failed to load profile data.");
           }
         }
-      } catch (error) {
+      } catch {
         const localUser = localStorage.getItem("user");
         if (localUser) {
           setProfile(JSON.parse(localUser));
-          message.info("Server javob bermadi, local ma'lumot yuklandi.");
+          message.info("Server unavailable. Loaded local data.");
         } else {
-          message.error("Serverga murojaatda xatolik yuz berdi");
+          message.error("Error connecting to the server.");
         }
       } finally {
         setLoading(false);
@@ -74,7 +69,12 @@ const ProfilePage: React.FC = () => {
     fetchProfile();
   }, []);
 
-  const handleUpdate = async (updatedValues: any) => {
+  const handleUpdate = async (updatedValues: {
+    name?: string;
+    email?: string;
+    balance?: string;
+    password?: string;
+  }) => {
     const token = localStorage.getItem("token");
 
     const payload = { ...updatedValues };
@@ -94,7 +94,7 @@ const ProfilePage: React.FC = () => {
       );
 
       if (response.data.success) {
-        message.success("Ma'lumotlar yangilandi!");
+        message.success("Profile updated successfully!");
 
         const updatedProfile = {
           ...profile!,
@@ -102,16 +102,14 @@ const ProfilePage: React.FC = () => {
         };
 
         setProfile(updatedProfile);
-
         localStorage.setItem("user", JSON.stringify(updatedProfile));
-
         setIsModalOpen(false);
       } else {
-        message.error("Yangilashda xatolik");
+        message.error("Update failed.");
       }
-    } catch (error) {
-      message.error("Server bilan ulanishda xatolik");
-      console.error(error);
+    } catch {
+      message.error("Server connection error.");
+      console.error("Update error");
     }
   };
 
@@ -119,7 +117,7 @@ const ProfilePage: React.FC = () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      message.warning("Siz tizimga kirmagansiz.");
+      message.warning("You are not logged in.");
       return;
     }
 
@@ -134,10 +132,10 @@ const ProfilePage: React.FC = () => {
         }
       );
 
-      message.success("Tizimdan chiqdingiz!");
-    } catch (error) {
-      message.error("Chiqishda xatolik yuz berdi");
-      console.error("Logout error:", error);
+      message.success("You have been logged out.");
+    } catch {
+      message.error("Logout failed.");
+      console.error("Logout error");
     } finally {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
@@ -158,18 +156,16 @@ const ProfilePage: React.FC = () => {
           className="profile-menu"
         >
           <Menu.Item key="1" icon={<UserOutlined />}>
-            Mening profilim
+            My Profile
           </Menu.Item>
-          <Menu.Item key="2" icon={<BellOutlined />}>
-            Xabarnomalar
-          </Menu.Item>
+
           <Menu.Item
             key="6"
             icon={<LogoutOutlined />}
             danger
             onClick={handleLogout}
           >
-            Chiqish
+            Logout
           </Menu.Item>
         </Menu>
       </Sider>
@@ -177,7 +173,7 @@ const ProfilePage: React.FC = () => {
       <Layout>
         <Content className="profile-content">
           <Title level={3} className="profile-title">
-            Mening profilim
+            My Profile
           </Title>
 
           {loading ? (
@@ -189,8 +185,10 @@ const ProfilePage: React.FC = () => {
               bordered
               className="profile-descriptions"
             >
-              <Descriptions.Item label="ID">{profile.id}</Descriptions.Item>
-              <Descriptions.Item label="F.I.Sh.">
+              <Descriptions.Item label="User ID">
+                {profile.id}
+              </Descriptions.Item>
+              <Descriptions.Item label="Full Name">
                 {profile.name}
                 <EditOutlined
                   onClick={() => setIsModalOpen(true)}
@@ -200,7 +198,7 @@ const ProfilePage: React.FC = () => {
               <Descriptions.Item label="Email">
                 {profile.email}
               </Descriptions.Item>
-              <Descriptions.Item label="Hisob balansi">
+              <Descriptions.Item label="Account Balance">
                 {new Intl.NumberFormat("uz-UZ", {
                   style: "currency",
                   currency: "UZS",
@@ -211,8 +209,8 @@ const ProfilePage: React.FC = () => {
                   style={{ marginLeft: 8, cursor: "pointer", color: "#1890ff" }}
                 />
               </Descriptions.Item>
-              <Descriptions.Item label="Parol">
-                <p>Parolni o'zgartirish</p>
+              <Descriptions.Item label="Password">
+                <p>Change password</p>
                 <EditOutlined
                   onClick={() => setIsModalOpen(true)}
                   style={{ marginLeft: 8, cursor: "pointer", color: "#1890ff" }}
@@ -220,7 +218,7 @@ const ProfilePage: React.FC = () => {
               </Descriptions.Item>
             </Descriptions>
           ) : (
-            <p>Ma'lumot topilmadi</p>
+            <p>No profile data found.</p>
           )}
         </Content>
 

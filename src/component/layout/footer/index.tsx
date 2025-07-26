@@ -1,25 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./index.css";
-import { FaInstagram } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FaTelegram } from "react-icons/fa";
+import { FaInstagram, FaTelegram, FaLinkedin } from "react-icons/fa";
+
 const footerLinks = [
   {
-    title: "компания",
-    links: ["Leadership", "Our History"],
+    title: "Company",
+    links: ["About Us", "Our Mission", "Careers"],
   },
   {
-    title: "продукты",
-    links: ["Загрузочная доска", "Тарифы на фрахт"],
+    title: "Services",
+    links: ["Buy Gold", "Sell Gold", "Exchange Rates"],
   },
   {
-    title: "ресурсы",
-    links: ["Вопросы и ответы", "Пресс-центр"],
+    title: "Resources",
+    links: ["FAQ", "Blog", "Security Tips"],
   },
   {
-    title: "поддержка",
-    links: ["Вход в систему продукта", "Защита от мошенничества"],
+    title: "Support",
+    links: ["Contact Us", "Terms of Service", "Privacy Policy"],
   },
 ];
 
@@ -27,43 +26,45 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer__container">
-          <ul className="footer__list">
-            {footerLinks.map((section, index) => (
-              <li className="footer__item" key={index}>
-                <h2 className="footer__item-title">{section.title}</h2>
-
-                <ul className="footer__navigations">
-                  {section.links.map((link, idx) => (
-                    <li key={idx}>
-                      <NavLink to="/" className="footer__navigation-link">
-                        {link}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+        <div className="footer__top">
+          {footerLinks.map((section, index) => (
+            <div className="footer__column" key={index}>
+              <h2 className="footer__title">{section.title}</h2>
+              <ul className="footer__links">
+                {section.links.map((link, idx) => (
+                  <li key={idx}>
+                    <NavLink to="/" className="footer__link">
+                      {link}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <ul className="footer__medias">
-          <li className="footer__media-image">
-            <a href="insagram.com">
-              <FaInstagram />
-            </a>
-          </li>
-          <li className="footer__media-image">
-            <a href="insagram.com">
-              <FaLinkedin />
-            </a>
-          </li>
-          <li className="footer__media-image">
-            <a href="insagram.com">
-              <FaTelegram />
-            </a>
-          </li>
-        </ul>
+        <div className="footer__bottom">
+          <ul className="footer__socials">
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer">
+                <FaInstagram />
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+                <FaLinkedin />
+              </a>
+            </li>
+            <li>
+              <a href="https://t.me" target="_blank" rel="noreferrer">
+                <FaTelegram />
+              </a>
+            </li>
+          </ul>
+          <p className="footer__copyright">
+            © {new Date().getFullYear()} TillaPay.
+          </p>
+        </div>
       </div>
     </footer>
   );

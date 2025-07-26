@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store/store";
 import { loginUser } from "../../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { Title } = Typography;
 
@@ -18,12 +20,12 @@ const LoginPage = () => {
 
     const result = await dispatch(loginUser(values));
     if (loginUser.fulfilled.match(result)) {
-      message.success("Muvaffaqiyatli tizimga kirildi!");
+      toast.success("Muvaffaqiyatli tizimga kirildi!");
       const token = result.payload.token;
       localStorage.setItem("token", token);
       navigate("/profile");
     } else {
-      message.error(result.payload || "Xatolik yuz berdi");
+      toast.error(result.payload || "Xatolik yuz berdi");
     }
   };
 

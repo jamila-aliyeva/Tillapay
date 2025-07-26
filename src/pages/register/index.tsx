@@ -5,6 +5,8 @@ import { registerUser } from "../../store/authSlice";
 import type { AppDispatch, RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { Title } = Typography;
 
@@ -26,7 +28,7 @@ const RegisterPage: React.FC = () => {
 
     const result = await dispatch(registerUser(values));
     if (registerUser.fulfilled.match(result)) {
-      message.success("Ro'yxatdan muvaffaqiyatli o'tildi!");
+      toast.success("Ro'yxatdan muvaffaqiyatli o'tildi!");
       localStorage.setItem(
         "registeredUser",
         JSON.stringify({
@@ -37,7 +39,7 @@ const RegisterPage: React.FC = () => {
       );
       navigate("/profile");
     } else {
-      message.error(result.payload || "Xatolik yuz berdi");
+      toast.error(result.payload || "Xatolik yuz berdi");
     }
   };
 

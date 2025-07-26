@@ -4,8 +4,17 @@ import { Modal, Form, Input } from "antd";
 type Props = {
   open: boolean;
   onClose: () => void;
-  onSubmit: (values: string) => void;
-  initialValues: string;
+  onSubmit: (values: {
+    name?: string;
+    email?: string;
+    balance?: string;
+    password?: string;
+  }) => void;
+  initialValues: {
+    name: string;
+    email: string;
+    balance: string;
+  };
 };
 
 const ProfileEditModal: React.FC<Props> = ({

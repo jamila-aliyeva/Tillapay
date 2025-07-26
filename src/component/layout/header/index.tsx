@@ -26,32 +26,64 @@ const Header: React.FC = () => {
           <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
             <ul className="nav__list">
               <li className="nav__item">
-                <NavLink to="/" className="nav__item-link">
-                  Products
+                <NavLink
+                  to="/convertation"
+                  className={({ isActive }) =>
+                    `nav__item-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  Purchase
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/payment" className="nav__item-link">
-                  Payment
+                <NavLink
+                  to="/convertationlist"
+                  className={({ isActive }) =>
+                    `nav__item-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  Convertation
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/transactions" className="nav__item-link">
+                <NavLink
+                  to="/currency"
+                  className={({ isActive }) =>
+                    `nav__item-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  Currency
+                </NavLink>
+              </li>
+              <li className="nav__item">
+                <NavLink
+                  to="/transactions"
+                  className={({ isActive }) =>
+                    `nav__item-link ${isActive ? "active" : ""}`
+                  }
+                >
                   Transactions
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/" className="nav__item-link">
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    `nav__item-link ${isActive ? "active" : ""}`
+                  }
+                >
                   Contact
                 </NavLink>
               </li>
+
+              {/* Mobile login/register (visible only on mobile) */}
               <li className="nav__item mobile-login">
                 {isAuthenticated ? (
-                  <Link to="profile" className="header-login">
+                  <Link to="/profile" className="header-login">
                     Profile
                   </Link>
                 ) : (
-                  <Link to="register" className="header-login">
+                  <Link to="/register" className="header-login">
                     Register
                   </Link>
                 )}
@@ -59,18 +91,20 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Desktop Login Button */}
-          {isAuthenticated ? (
-            <Link to="profile" className="header-login">
-              Profile
-            </Link>
-          ) : (
-            <Link to="register" className="header-login">
-              Register
-            </Link>
-          )}
+          {/* Desktop login/register (visible only on desktop) */}
+          <div className="desktop-login">
+            {isAuthenticated ? (
+              <Link to="/profile" className="header-login">
+                Profile
+              </Link>
+            ) : (
+              <Link to="/register" className="header-login">
+                Register
+              </Link>
+            )}
+          </div>
 
-          {/* Burger Menu */}
+          {/* Burger menu */}
           <button
             className={`burger ${isMenuOpen ? "open" : ""}`}
             onClick={toggleMenu}

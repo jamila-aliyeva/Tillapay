@@ -6,8 +6,12 @@ import RegisterPage from "./pages/register";
 import LoginPage from "./pages/login";
 import ProfilePage from "./pages/profile";
 import PrivateRoute from "./component/PrivateRoute";
-import PaymentPage from "./pages/payment";
+
 import PaymentTransactionsPage from "./pages/transactions";
+import ConvertationListPage from "./pages/convertation";
+import GoldConverter from "./pages/goldConvertation";
+import Contact from "./pages/contact";
+import CurrencyRatesPage from "./pages/currecyRate";
 
 function App() {
   return (
@@ -15,8 +19,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Homepage />} />
-          <Route path="/payment" element={<PaymentPage />} />
+
           <Route path="/transactions" element={<PaymentTransactionsPage />} />
+          <Route path="/convertationlist" element={<ConvertationListPage />} />
+          <Route path="/convertation" element={<GoldConverter />} />
+          <Route path="/currency" element={<CurrencyRatesPage />} />
+
+          <Route path="/contact" element={<Contact />} />
         </Route>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
