@@ -85,7 +85,7 @@ const RegisterPage: React.FC = () => {
 
           <Form.Item
             label="Confirm Password"
-            name="confirm" // ✅ TUZATILDI: password_confirmation emas
+            name="confirm"
             dependencies={["password"]}
             hasFeedback
             rules={[
