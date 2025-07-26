@@ -73,7 +73,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || "Ro‘yxatdan o‘tishda xatolik";
+        state.error = action.payload || "Ro'yxatdan o'tishda xatolik";
       })
 
       // Login

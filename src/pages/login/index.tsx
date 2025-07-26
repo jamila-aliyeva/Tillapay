@@ -1,4 +1,4 @@
-import { Form, Input, Button, Typography, Card, message } from "antd";
+import { Form, Input, Button, Typography, Card } from "antd";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store/store";

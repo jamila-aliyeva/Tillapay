@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Typography, Card, message } from "antd";
+import { Form, Input, Button, Typography, Card } from "antd";
 import "./index.css";
 import { registerUser } from "../../store/authSlice";
 import type { AppDispatch, RootState } from "../../store/store";
@@ -24,22 +24,20 @@ const RegisterPage: React.FC = () => {
   const { loading } = useSelector((state: RootState) => state.auth);
 
   const onFinish = async (values: RegisterFormValues) => {
-    console.log("yuborilayotgan value:", values);
+    const payload = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.confirm,
+    };
 
-    const result = await dispatch(registerUser(values));
+    const result = await dispatch(registerUser(payload));
+
     if (registerUser.fulfilled.match(result)) {
-      toast.success("Ro'yxatdan muvaffaqiyatli o'tildi!");
-      localStorage.setItem(
-        "registeredUser",
-        JSON.stringify({
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        })
-      );
+      toast.success("Successfully registered!");
       navigate("/profile");
     } else {
-      toast.error(result.payload || "Xatolik yuz berdi");
+      toast.error(result.payload || "Something went wrong");
     }
   };
 
