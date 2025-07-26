@@ -85,7 +85,7 @@ const RegisterPage: React.FC = () => {
 
           <Form.Item
             label="Confirm Password"
-            name="password_confirmation"
+            name="confirm" // ✅ TUZATILDI: password_confirmation emas
             dependencies={["password"]}
             hasFeedback
             rules={[
@@ -113,7 +113,7 @@ const RegisterPage: React.FC = () => {
               Register
             </Button>
             <p style={{ marginTop: "20px", textAlign: "center" }}>
-              if you registered,{" "}
+              If you already have an account,{" "}
               <Link
                 to="/login"
                 style={{
